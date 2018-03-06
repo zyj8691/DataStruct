@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="3.0.1顺序表.c" />
+    <ClCompile Include="3.0.2 链表.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0A8C1891-C828-4974-8F3A-ABD957423810}</ProjectGuid>
