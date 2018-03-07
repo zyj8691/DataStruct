@@ -71,6 +71,45 @@ Status ClearList(LinkList *L)
 	}
 	(*L)->next = NULL;
 }
+Status GetElem(LinkList L, int i, ElemType *e)/*自己写的可以运行*/
+{
+	LinkList p;
+	int j = 1;
+	p = L->next;
+	while (p)
+	{
+		if (j < i)
+		{
+			p = p->next;
+			j++;
+		}
+		else{
+			*e = p->data;
+			return OK;
+		}
+	}
+	return FALSE;
+
+}
+Status ListInsert(LinkList *L, int i, ElemType e)
+{
+	int j = 1;
+	LinkList p, s;
+	p = (*L);
+	while (p&&j < i)
+	{
+		p = p->next;
+		j++;
+	}
+	if (!p->next || j>i)
+		return ERROR;
+	s = (LinkList)malloc(sizeof(Node));/*因为s是插入的新节点，所以要为它分配内存空间，区别于
+									   其他函数的临时节点，临时节点不需要分配空间*/
+	s->data = e;
+	s->next = p->next;
+	p->next = s;
+	return OK;
+}
 /*输出链表所有信息*/
 void disFinc(LinkList L)
 {
@@ -87,8 +126,17 @@ int main()
 	LinkList L;
 	CreateListTail(&L, 10);
 	disFinc(L);
-	ClearList(&L);
+	/*ClearList(&L);
 	printf("-------------\n");
+	disFinc(L);*/
+	ElemType e;
+	int s = GetElem(L, 11, &e);
+	if (s)
+		printf("e = %d\n", e);
+	else
+		printf("cant find\n");
+	e = 666;
+	ListInsert(&L, 2, e);
 	disFinc(L);
 	return 0;
 }

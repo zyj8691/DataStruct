@@ -99,7 +99,7 @@ Status ListInsert(LinkList *L, int i, ElemType e)
 {
 	int j=1;
 	LinkList p,s;
-	p = (*L);
+	p = (*L);/*头结点*/
 	while (p&&j < i)
 	{
 		p = p->next;
@@ -107,7 +107,8 @@ Status ListInsert(LinkList *L, int i, ElemType e)
 	}
 	if (!p->next||j>i)
 		return ERROR;
-	s = (LinkList)malloc(sizeof(Node));
+	s = (LinkList)malloc(sizeof(Node));/*因为s是插入的新节点，所以要为它分配内存空间，区别于
+	其他函数的临时节点，临时节点不需要分配空间*/
 	s->data=e;
 	s->next = p->next;
 	p->next = s;
@@ -116,8 +117,9 @@ Status ListInsert(LinkList *L, int i, ElemType e)
 Status ListDelete(LinkList *L, int i, ElemType *e)
 {
 	LinkList p,s;
-	p = (*L);
+	p = (*L);/*头结点*/
 	int j=1;
+	/*因为p为要删除节点的前一节点，所以需要用p->next判断是否超出链表范围*/
 	while (p->next&&j < i)
 	{
 		p = p->next;
@@ -125,15 +127,14 @@ Status ListDelete(LinkList *L, int i, ElemType *e)
 	}
 	if (!(p->next) || j>i)
 		return ERROR;
-	//s = (LinkList)malloc(sizeof(Node));
+	//s = (LinkList)malloc(sizeof(Node));/*临时节点，不需要分配内存*/
 	s = p->next;
 	*e = s->data;
 	p->next = s->next;
 	free(s);
 	return OK;
-
 }
-Status GetElem(LinkList *L, int i, ElemType *e)
+Status GetElem(LinkList L, int i, ElemType *e)
 {
 	LinkList p;
 	p = (*L)->next;
@@ -143,7 +144,7 @@ Status GetElem(LinkList *L, int i, ElemType *e)
 		p = p->next;
 		j++;
 	}
-	if (!p || j>i)
+	if (!p || j>i)/*貌似出现不了j>i的情况。。。；超出范围时，p=NUll*/
 		return ERROR;
 	//p = p->next;
 	*e = p->data;
@@ -198,7 +199,7 @@ Status ClearList(LinkList *L)
 //	printf("%d\n", s);
 //	disFinc(L);
 //
-//	s = GetElem(&L, 2, &e);
+//	s = GetElem(L, 2, &e);
 //	printf("e = %d\n", e);
 //
 //
