@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="4.1.1 栈的链式存储结构.c">
+    <None Include="4.2.2 队列的链式存储结构及实现.c">
       <Filter>源文件</Filter>
-    </ClCompile>
+    </None>
   </ItemGroup>
 </Project>

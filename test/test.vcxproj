@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="4.1.1 栈的链式存储结构.c" />
+    <None Include="4.2.2 队列的链式存储结构及实现.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0A8C1891-C828-4974-8F3A-ABD957423810}</ProjectGuid>
